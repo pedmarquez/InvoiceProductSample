@@ -23,6 +23,13 @@ namespace Buxis.Sample.API.Services
                 Price  = model.Price
             };
 
+            foreach (var item in model.Attributes)
+            {
+                var attrib = await buxiDbContext.ProductAttribute.FindAsync(item);
+                product.ProductAttributes.Add(attrib);
+            }
+            
+
             buxiDbContext.Product.Add(product);
 
             await buxiDbContext.SaveChangesAsync();

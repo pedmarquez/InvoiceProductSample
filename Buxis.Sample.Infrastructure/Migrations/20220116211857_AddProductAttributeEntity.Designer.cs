@@ -4,6 +4,7 @@ using Buxis.Sample.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Buxis.Sample.Infrastructure.Migrations
 {
     [DbContext(typeof(BuxiDbContext))]
-    partial class BuxiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220116211857_AddProductAttributeEntity")]
+    partial class AddProductAttributeEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,21 +100,6 @@ namespace Buxis.Sample.Infrastructure.Migrations
                     b.ToTable("ProductAttribute");
                 });
 
-            modelBuilder.Entity("ProductProductAttribute", b =>
-                {
-                    b.Property<int>("ProductAttributesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductAttributesId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductProductAttribute");
-                });
-
             modelBuilder.Entity("Buxis.Sample.ApplicationCore.Entities.InvoiceItem", b =>
                 {
                     b.HasOne("Buxis.Sample.ApplicationCore.Entities.Invoice", null)
@@ -126,21 +113,6 @@ namespace Buxis.Sample.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("ProductProductAttribute", b =>
-                {
-                    b.HasOne("Buxis.Sample.ApplicationCore.Entities.ProductAttribute", null)
-                        .WithMany()
-                        .HasForeignKey("ProductAttributesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Buxis.Sample.ApplicationCore.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Buxis.Sample.ApplicationCore.Entities.Invoice", b =>
