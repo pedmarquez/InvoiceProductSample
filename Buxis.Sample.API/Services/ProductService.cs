@@ -19,7 +19,8 @@ namespace Buxis.Sample.API.Services
         {
             var product = new Product
             {
-                Nombre = model.Nombre
+                Nombre = model.Nombre,
+                Price  = model.Price
             };
 
             buxiDbContext.Product.Add(product);
@@ -29,7 +30,8 @@ namespace Buxis.Sample.API.Services
             var dto = new ProductDto
             {
                 Id = product.Id,
-                Nombre = product.Nombre
+                Nombre = product.Nombre,
+                Price = product.Price
             };
             return dto;
         }
@@ -48,7 +50,8 @@ namespace Buxis.Sample.API.Services
                 .Select(p => new ProductDto
                 {
                     Id = p.Id,
-                    Nombre = p.Nombre
+                    Nombre = p.Nombre,
+                    Price = p.Price
                 })
                 .ToArrayAsync();
 

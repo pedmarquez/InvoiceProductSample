@@ -3,6 +3,7 @@ using Buxis.Sample.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Buxis.Sample.Infrastructure.Migrations
 {
     [DbContext(typeof(BuxiDbContext))]
-    partial class BuxiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220116205913_AddPriceColumn")]
+    partial class AddPriceColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
