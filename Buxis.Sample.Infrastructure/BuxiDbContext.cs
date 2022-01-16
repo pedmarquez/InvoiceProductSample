@@ -11,6 +11,6 @@ namespace Buxis.Sample.Infrastructure
         }
 
         public DbSet<Product> Product { get; set; }
-
+        public DbSet<Invoice> Invoice { get; set; }
     }
 }

@@ -18,14 +18,18 @@ namespace Buxis.Sample.API.Services
         {
             var invoice = new Invoice();
 
-            foreach (var item in model.Products)
+            foreach (var pid in model.Products)
             {
+                var product = await db.Product.FindAsync(pid);
+
                 invoice.InvoiceItems.Add(new InvoiceItem
                 {
-                    ProductId = item.Id
+                    ProductId = pid,
+                    Price = product.Price
                 });
             }
 
+            db.Invoice.Add(invoice);
 
             await db.SaveChangesAsync();
 
